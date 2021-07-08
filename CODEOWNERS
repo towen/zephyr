@@ -420,6 +420,7 @@
 /drivers/i2c/i2c_dw*                      @dcpleung
 /drivers/i2c/*tca954x*                    @kurddt
 /drivers/*/*xec*                          @franciscomunoz @albertofloyd @sjvasanth1
+/drivers/w1/                              @str4t0m
 /drivers/watchdog/*gecko*                 @oanerer
 /drivers/watchdog/*sifive*                @katsuster
 /drivers/watchdog/wdt_handlers.c          @dcpleung @nashif
@@ -541,6 +542,7 @@
 /include/drivers/peci.h                   @albertofloyd @franciscomunoz @sjvasanth1
 /include/drivers/pm_cpu_ops.h             @carlocaione
 /include/drivers/pm_cpu_ops/              @carlocaione
+/include/drivers/w1.h                     @str4t0m
 /include/app_memory/                      @dcpleung
 /include/arch/arc/                        @abrodkin @ruuddw @evgeniy-paltsev
 /include/arch/arc/arch.h                  @abrodkin @ruuddw @evgeniy-paltsev
@@ -781,6 +783,7 @@ scripts/gen_image_info.py                 @tejlmand
 /tests/drivers/hwinfo/                    @alexanderwachter
 /tests/drivers/spi/                       @tbursztyka
 /tests/drivers/uart/uart_async_api/       @Mierunski
+/tests/drivers/w1/                        @str4t0m
 /tests/kernel/                            @dcpleung @andyross @nashif
 /tests/lib/                               @nashif
 /tests/lib/cmsis_dsp/                     @stephanosio
