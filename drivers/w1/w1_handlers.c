@@ -73,4 +73,24 @@ static inline size_t z_vrfy_w1_get_peripheral_count(const struct device *dev)
 }
 #include <syscalls/w1_get_peripheral_count_mrsh.c>
 
+#if CONFIG_W1_NET
+static inline int z_vrfy_w1_search_bus(const struct device *dev,
+				       uint8_t command, uint8_t family,
+				       w1_search_callback_t callback_isr,
+				       void *callback_arg)
+{
+	Z_OOPS(Z_SYSCALL_OBJ(dev, K_OBJ_DRIVER_W1));
+
+	Z_OOPS(Z_SYSCALL_VERIFY_MSG(callback_isr == 0,
+				    "callbacks may not be set from user mode"));
+	/* callback_arg is not dereferenced, no need to check parameter */
+
+	return z_impl_w1_search_bus((const struct device *)dev,
+				    (uint8_t)command, (uint8_t)family,
+				    (w1_search_callback_t)callback_isr,
+				    (void *)callback_arg);
+}
+
+#endif /* CONFIG_W1_NET */
+
 #include <syscalls/w1_search_bus_mrsh.c>
