@@ -14,5 +14,8 @@ ram: 16
 flash: 128
 vendor: beagle
 supported:
+  - hwinfo
+  - entropy
   - pinctrl
   - uart
+  - watchdog

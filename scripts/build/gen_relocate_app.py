@@ -293,9 +293,14 @@ def assign_to_correct_mem_region(
     """
     use_section_kinds, memory_region = section_kinds_from_memory_region(memory_region)
 
+    # Split |COPY/|NOKEEP flags before the numeric align suffix, else a region
+    # like "SRAM_4|COPY" makes int("4|COPY") throw.
+    memory_region, sep, flags = memory_region.partition('|')
+    flags = sep + flags
     memory_region, _, align_size = memory_region.partition('_')
     if align_size:
         mpu_align[memory_region] = int(align_size)
+    memory_region = memory_region + flags
 
     keep_sections = '|NOKEEP' not in memory_region
     memory_region = memory_region.replace('|NOKEEP', '')
@@ -576,6 +581,10 @@ def get_obj_filename(all_obj_files, filename):
 
     for obj_file in all_obj_files:
         if obj_file.name == obj_filename and filename.split("/")[-2] in obj_file.parent.name:
+            return str(obj_file)
+
+    for obj_file in all_obj_files:
+        if obj_file.name == obj_filename and obj_file.parent.name == 'app.dir':
             return str(obj_file)
 
 
